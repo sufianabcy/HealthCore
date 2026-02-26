@@ -44,7 +44,10 @@ function App() {
             <Route path="/" element={<Navigate to="/auth/login" replace />} />
 
             {/* Public Routes */}
-            <Route path="/auth/login" element={user ? <Navigate to={`/${user.role}`} replace /> : <Login />} />
+            <Route
+              path="/auth/login"
+              element={user ? <Navigate to={`/${user.role === 'pharmacist' ? 'pharmacy' : user.role}/dashboard`} replace /> : <Login />}
+            />
 
             {/* Protected Role Routes */}
             <Route path="/admin" element={
@@ -91,7 +94,7 @@ function App() {
               <Route path="consultations" element={<PatientConsultations />} />
             </Route>
 
-            <Route path="/pharmacist" element={
+            <Route path="/pharmacy" element={
               <ProtectedRoute allowedRoles={['pharmacist']}>
                 <PharmacistLayout />
               </ProtectedRoute>

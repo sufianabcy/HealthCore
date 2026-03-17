@@ -66,7 +66,3 @@ The application currently uses a mocked authentication system. You can log in us
 - **Doctor:** `doctor@test.com`
 - **Pharmacy:** `pharmacy@test.com`
 - **Admin:** `admin@test.com`
-
-## 📚 Learning Guide
-
-If you're a developer looking to understand how this project is built from the ground up, please refer to the [LEARNING_GUIDE.md](./LEARNING_GUIDE.md) document included in this directory!

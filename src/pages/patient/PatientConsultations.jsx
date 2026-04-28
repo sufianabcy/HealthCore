@@ -59,24 +59,34 @@ const PatientConsultations = () => {
                                     <div>
                                         <p className="font-bold text-gray-800 text-lg mb-1">{appt.doctorName}</p>
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-md font-bold uppercase tracking-wide">Ready to Join</span>
+                                            <span className={`text-xs px-2 py-1 rounded-md font-bold uppercase tracking-wide ${
+                                                appt.status === 'completed' || appt.status === 'COMPLETED'
+                                                    ? 'bg-gray-100 text-gray-600'
+                                                    : 'bg-red-100 text-red-700'
+                                            }`}>
+                                                {appt.status === 'completed' || appt.status === 'COMPLETED' ? 'Completed' : (appt.status || 'Ready')}
+                                            </span>
                                             <span className="text-sm text-gray-500 font-medium">Scheduled: {appt.date} at {appt.time}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex gap-2 justify-end">
-                                    <button
-                                        onClick={startCall}
-                                        className="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 shadow-sm transition-colors whitespace-nowrap"
-                                    >
-                                        Join Virtual Waiting Room
-                                    </button>
-                                    <button
-                                        onClick={() => updateAppointmentStatus(appt.id, 'COMPLETED')}
-                                        className="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 shadow-sm transition-colors whitespace-nowrap"
-                                    >
-                                        Mark Done
-                                    </button>
+                                    {appt.status !== 'COMPLETED' && appt.status !== 'completed' && (
+                                        <>
+                                            <button
+                                                onClick={startCall}
+                                                className="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 shadow-sm transition-colors whitespace-nowrap"
+                                            >
+                                                Join Virtual Waiting Room
+                                            </button>
+                                            <button
+                                                onClick={() => updateAppointmentStatus(appt.id, 'COMPLETED')}
+                                                className="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 shadow-sm transition-colors whitespace-nowrap"
+                                            >
+                                                Mark Done
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                             </li>
                         ))}

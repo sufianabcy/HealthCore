@@ -83,9 +83,14 @@ const PatientDashboard = () => {
                                         {appt.status !== 'COMPLETED' && appt.status !== 'completed' && (
                                             <>
                                                 {appt.type === 'Virtual' || appt.type === 'VIRTUAL' ? (
-                                                    <Link to="/patient/consultations" className="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                                                        Join Call
-                                                    </Link>
+                                                    <>
+                                                        <Link to="/patient/consultations" className="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                                                            Join Call
+                                                        </Link>
+                                                        <button onClick={() => updateAppointmentStatus(appt.id, 'COMPLETED')} className="text-sm font-semibold text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
+                                                            Mark Done
+                                                        </button>
+                                                    </>
                                                 ) : (
                                                     <button onClick={() => updateAppointmentStatus(appt.id, 'COMPLETED')} className="text-sm font-semibold text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
                                                         Mark Done

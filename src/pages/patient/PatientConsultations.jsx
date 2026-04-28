@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 const PatientConsultations = () => {
-    const { appointments } = useOutletContext();
+    const { appointments, updateAppointmentStatus } = useOutletContext();
     const virtualAppointments = appointments.filter(a => a.type === 'Virtual' || a.type === 'VIRTUAL');
 
     const [inCall, setInCall] = useState(false);
@@ -64,12 +64,18 @@ const PatientConsultations = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex justify-end">
+                                <div className="flex gap-2 justify-end">
                                     <button
                                         onClick={startCall}
                                         className="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 shadow-sm transition-colors whitespace-nowrap"
                                     >
                                         Join Virtual Waiting Room
+                                    </button>
+                                    <button
+                                        onClick={() => updateAppointmentStatus(appt.id, 'COMPLETED')}
+                                        className="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 shadow-sm transition-colors whitespace-nowrap"
+                                    >
+                                        Mark Done
                                     </button>
                                 </div>
                             </li>
